@@ -16,14 +16,14 @@ for item in signals_last:
 
 
 scrambled = signals_first[0].split(" ")
-scrambled_sort = ["".join(sorted(x)) for x in scrambled]
-leftover_numb_list = scrambled_sort.copy()
+scrambled_set = [{char for char in word} for word in scrambled]
+leftover_numb_list = scrambled_set.copy()
 
 numb_dict = {}
 piece_dict = {}
 
 # Find the 1, the 4 , the 7 and the 8
-for item in scrambled_sort:
+for item in scrambled_set:
     # print(item)
     if len(item) == 2:
         numb_dict[1] = item
