@@ -46,3 +46,8 @@ while add_points == True:
         if new_len > old_len:
             add_points = False
 
+# I think what I want is the following
+# frozen_list = current_list
+# loop over frozen_list and add new points to some list
+# Add those new points to the current list (if not already done in the above step)
+# repeat
