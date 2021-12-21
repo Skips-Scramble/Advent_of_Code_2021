@@ -1,8 +1,6 @@
 import itertools
 
-input_file = open(
-    "H:\Personal\PRM\SkipsScramble_Repo\Advent_of_Code_2021\input_09_sample.txt"
-)
+input_file = open("H:\Personal\PRM\SkipsScramble_Repo\Advent_of_Code_2021\input_09.txt")
 input = input_file.read().splitlines()
 
 # Note: basins can have flat part to them (every point is part of a basin that's not a 9)
@@ -56,7 +54,7 @@ print(len(conf_indices))
 
 basin_sizes = set()
 
-for i, j in itertools.product(range(5), range(10)):
+for i, j in itertools.product(range(100), range(100)):
     conf_indices = {(i, j)}
     frozen_set = set()
     while frozen_set != conf_indices and ref_input[i][j] != "1":
@@ -66,3 +64,6 @@ for i, j in itertools.product(range(5), range(10)):
             check_surroundings(point[0], point[1])
     # print("for ({}, {}), the size is {}".format(i,j, len(conf_indices)))
     basin_sizes.add(len(conf_indices))
+
+print(basin_sizes)
+
