@@ -1,3 +1,5 @@
+import itertools
+
 input_file = open(
     "H:\Personal\PRM\SkipsScramble_Repo\Advent_of_Code_2021\input_09_sample.txt"
 )
@@ -16,7 +18,7 @@ for item in input:
             new_item = new_item + "1"
     ref_input.append(new_item)
 
-conf_indices = set()
+# conf_indices = set()
 
 
 def check_surroundings(row, col):
@@ -33,21 +35,34 @@ def check_surroundings(row, col):
     return conf_indices
 
 
-check_surroundings(2, 3)
+conf_indices = {(4, 9)}
 
-add_points = True
+frozen_set = set()
 
-while add_points == True:
-    conf_indices = {(0, 9)}
-    for point in conf_indices:
-        old_len = len(conf_indices)
-        conf_indices.union(check_surroundings(point[0], point[1]))
-        new_len = len(conf_indices)
-        if new_len > old_len:
-            add_points = False
+while frozen_set != conf_indices:
+    frozen_set = conf_indices.copy()
+
+    for point in frozen_set:
+        check_surroundings(point[0], point[1])
+
+print(len(conf_indices))
+
 
 # I think what I want is the following
 # frozen_list = current_list
 # loop over frozen_list and add new points to some list
 # Add those new points to the current list (if not already done in the above step)
 # repeat
+
+basin_sizes = set()
+
+for i, j in itertools.product(range(5), range(10)):
+    conf_indices = {(i, j)}
+    frozen_set = set()
+    while frozen_set != conf_indices and ref_input[i][j] != "1":
+        frozen_set = conf_indices.copy()
+
+        for point in frozen_set:
+            check_surroundings(point[0], point[1])
+    # print("for ({}, {}), the size is {}".format(i,j, len(conf_indices)))
+    basin_sizes.add(len(conf_indices))
