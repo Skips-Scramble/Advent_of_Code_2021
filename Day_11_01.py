@@ -36,6 +36,15 @@ def add_one(list):
     return list_plus_1
 
 
+def add_one_matrix(matrix):
+    output = []
+    for row in matrix:
+        list_plus_1 = [x + 1 for x in row]
+        output.append(list_plus_1)
+
+    return list_plus_1
+
+
 add_one([1, 2, 3, 4, 5, 6, 7, 8, 9])
 
 
@@ -49,4 +58,7 @@ def light_nearby(matrix):
 
 
 light_nearby()
+
+
+add_one(number_list)
 
